@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주식 OS</title>
+<meta name="theme-color" content="#0b0d11">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0d11; color: #eef0f3;
+    font: 15px/1.5 -apple-system, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+  main { min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 16px; box-sizing: border-box; text-align: center; }
+  img { width: 112px; height: 112px; border-radius: 26px; }
+  h1 { font-size: 24px; margin: 18px 0 6px; font-style: italic; letter-spacing: -0.5px; }
+  p { color: #9aa3af; margin: 4px 0; max-width: 340px; }
+  a.btn { display: inline-block; margin-top: 20px; padding: 12px 26px; border-radius: 999px; background: #ff5a52; color: #fff; text-decoration: none; font-weight: 700; }
+  small { display: block; margin-top: 22px; color: #6b7280; font-size: 12px; max-width: 340px; }
+</style>
+</head>
+<body>
+<main>
+  <img src="icon-512.png" alt="">
+  <h1>주식 OS</h1>
+  <p>홈 화면 아이콘으로 열면 바로 넘어갑니다.</p>
+  <a class="btn" id="go" href="#">주식 OS 열기</a>
+  <small>이 페이지는 아이콘과 바로가기만 있습니다. 숫자는 주식 전용 구글 계정으로 로그인해야 보입니다.</small>
+</main>
+<script>
+  const HOME = 'https://script.google.com/macros/s/AKfycbwRB1HKCRUasiYyBLHSKORk92vUO9wO-ksDCqAJzPz3de8GnnKAK6bdtYrF2e_-CMkF/exec';
+  document.getElementById('go').href = HOME;
+  // 홈 화면 아이콘(start_url ?app=1)이나 앱 창으로 열렸을 때만 바로 넘어간다. 그냥 열면 '홈 화면에 추가'를 할 수 있게 머문다.
+  const fromIcon = new URLSearchParams(location.search).has('app') || matchMedia('(display-mode: standalone)').matches;
+  if (fromIcon) location.replace(HOME);
+</script>
+</body>
+</html>
